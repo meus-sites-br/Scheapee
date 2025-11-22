@@ -3,532 +3,454 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Scheapee | Achadinhos Vips e Ofertas Secretas da Shopee</title>
-    <link rel="icon" type="image/png" href="./img/iiimg.png">
-    <link rel="shortcut icon" type="image/png" href="./img/iiimg.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Kong Achadinhos | Ofertas Vip</title>
+    
+    <link rel="icon" type="image/png" href="img/iiimg.png"> 
+    <link rel="shortcut icon" type="image/png" href="img/iiimg.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --shopee-orange: #EE4D2D;
-            --shopee-dark: #d03415;
-            --text-dark: #222;
-            --text-gray: #555;
-            --bg-body: #f3f4f6;
+            --primary: #FF5722; /* Laranja Vibrante */
+            --primary-dark: #E64A19;
+            --accent: #FFD600; /* Amarelo Banana */
+            --dark: #1F1F1F;
+            --gray: #F5F7FA;
+            --text: #2D3436;
+            --text-light: #636E72;
             --white: #FFFFFF;
-            --star-yellow: #ffc107;
+            --shadow-card: 0 8px 20px rgba(0,0,0,0.06);
+            --radius: 16px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-dark);
-            padding-bottom: 40px;
-            overflow-x: hidden; /* Previne rolagem lateral indesejada */
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--gray);
+            color: var(--text);
+            padding-bottom: 80px;
+            overflow-x: hidden;
+        }
+
+        /* --- TOP TICKER --- */
+        .top-ticker {
+            background: var(--dark);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 6px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ticker-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
 
         /* --- HEADER --- */
         header {
-            background: linear-gradient(135deg, #EE4D2D, #FF7337);
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(238, 77, 45, 0.3);
-            position: relative;
-            overflow: hidden;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100;
+            padding: 12px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         
-        header::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
-            animation: rotate 20s linear infinite;
-        }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        header .logo-shopee {
-            height: 70px; /* Altura padrão */
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-            position: relative; z-index: 2;
-            transition: transform 0.3s;
-        }
-        
-        header p.subtitle {
-            color: #fff; font-size: 0.9rem; margin-top: 5px; font-weight: 500;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2); position: relative; z-index: 2;
+        .header-inner {
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* --- SEARCH --- */
-        .search-wrapper {
-            background: var(--white);
-            padding: 10px 0;
-            position: sticky; top: 0; z-index: 99;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-
-        .search-box {
-            position: relative;
-            max-width: 600px; margin: 0 auto;
-        }
-
-        #search-bar {
-            width: 100%;
-            padding: 12px 45px 12px 20px;
-            border-radius: 50px;
-            border: 1px solid #eee;
-            font-size: 0.95rem;
-            background: #f9f9f9;
-            appearance: none; /* Remove estilos nativos do iOS */
-        }
-
-        #search-bar:focus {
-            border-color: var(--shopee-orange);
-            background: #fff;
-            outline: none;
-        }
-
-        .search-icon {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            color: var(--shopee-orange);
-            pointer-events: none;
-        }
-
-        /* --- FILTERS (SCROLL HORIZONTAL) --- */
-        .category-nav {
-            display: flex; 
-            justify-content: center; 
-            gap: 10px; 
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: #fff; border: 1px solid #e0e0e0;
-            padding: 8px 16px; border-radius: 20px;
-            font-size: 0.8rem; font-weight: 600; color: var(--text-gray);
-            cursor: pointer; transition: 0.2s;
-            display: flex; align-items: center; gap: 6px;
-            white-space: nowrap; /* Impede quebra de texto */
-        }
-
-        .filter-btn.active {
-            background: var(--shopee-orange);
-            color: #fff; border-color: var(--shopee-orange);
-            box-shadow: 0 2px 8px rgba(238, 77, 45, 0.3);
-        }
-
-        /* --- GRID RESPONSIVO --- */
-        .section-title {
-            text-align: center; margin: 30px 0 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800; font-size: 1.4rem;
-            color: var(--text-dark);
-            text-transform: uppercase;
+        .logo {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 1.3rem; font-weight: 800; color: var(--dark);
             letter-spacing: -0.5px;
         }
-        .section-title span { color: var(--shopee-orange); }
+        .logo span { color: var(--primary); }
+        .logo i { font-size: 1.6rem; color: var(--primary); }
+
+        /* --- HERO COM TIMER --- */
+        .hero {
+            margin: 15px 0;
+            background: linear-gradient(135deg, #FF5722 0%, #FF8A65 100%);
+            border-radius: 20px;
+            padding: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(255, 87, 34, 0.3);
+            text-align: center;
+        }
+
+        .hero-content h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 5px; line-height: 1.2; }
+        .hero-content p { font-size: 0.85rem; opacity: 0.95; margin-bottom: 12px; }
+
+        .countdown {
+            display: inline-flex; gap: 8px; background: rgba(0,0,0,0.2);
+            padding: 6px 14px; border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+            align-items: center;
+        }
+        .countdown i { color: var(--accent); }
+
+        /* --- SEARCH BAR --- */
+        .search-container { position: relative; margin-bottom: 15px; }
+        #search-bar {
+            width: 100%; padding: 14px 45px 14px 20px;
+            border-radius: 12px; border: none;
+            background: white; font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        #search-bar:focus { outline: 2px solid var(--primary); }
+        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--primary); }
+
+        /* --- STORIES NAVIGATION --- */
+        .stories-nav {
+            display: flex; gap: 12px; overflow-x: auto; padding: 5px 5px 15px 5px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .stories-nav::-webkit-scrollbar { display: none; }
+
+        .story-item {
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+            min-width: 65px; cursor: pointer;
+        }
+        .story-circle {
+            width: 55px; height: 55px; border-radius: 50%;
+            background: white; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--text-light);
+            border: 2px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .story-item.active .story-circle {
+            color: var(--primary);
+            background: #FFF3E0;
+            border-color: var(--primary);
+        }
+        .story-label { font-size: 0.7rem; font-weight: 600; color: var(--text-light); }
+
+        /* --- GRID RESPONSIVO --- */
+        .section-header {
+            display: flex; align-items: center; gap: 10px; margin: 15px 0;
+        }
+        .section-title { font-size: 1.2rem; font-weight: 800; color: var(--dark); }
+        .badge-hot { 
+            background: var(--dark); color: var(--accent); padding: 2px 8px; 
+            border-radius: 4px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+        }
 
         #product-grid {
             display: grid;
-            /* Desktop: colunas automáticas com mínimo de 220px */
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-            gap: 15px;
+            /* Responsividade: Mínimo 150px para caber 2 colunas em celulares pequenos */
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
         }
 
-        /* --- CARD --- */
+        /* --- PRODUCT CARD --- */
         .product-card {
-            background: #fff; border-radius: 8px;
+            background: white; border-radius: var(--radius);
             overflow: hidden; position: relative;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.03);
             display: flex; flex-direction: column;
-            border: 1px solid #f0f0f0;
+            transition: transform 0.2s;
         }
 
-        /* Tags */
-        .tag-trigger {
-            position: absolute; top: 6px; left: 6px;
-            background: #FF0040; color: white;
-            padding: 3px 8px; border-radius: 4px;
-            font-size: 0.6rem; font-weight: 700;
-            z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            text-transform: uppercase;
+        .card-tag {
+            position: absolute; top: 8px; left: 8px; z-index: 2;
+            background: var(--accent); color: var(--dark);
+            padding: 3px 6px; border-radius: 6px;
+            font-size: 0.6rem; font-weight: 800; text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .tag-discount {
-            position: absolute; top: 6px; right: 6px;
-            background: #ffe100; color: #000;
-            padding: 3px 6px; border-radius: 4px;
-            font-size: 0.65rem; font-weight: 800;
-            z-index: 10;
+        .img-container {
+            position: relative; padding-top: 100%; background: white; overflow: hidden;
         }
-
-        .img-wrapper {
-            position: relative; padding-top: 100%;
-            background: #fff; overflow: hidden;
-            border-bottom: 1px solid #f9f9f9;
+        .img-container img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: contain; padding: 10px; transition: 0.4s;
         }
-
-        .img-wrapper img {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; object-fit: contain;
-            padding: 8px;
-        }
-
-        .card-content { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-card:active .img-container img { transform: scale(1.05); }
+        
+        .card-body { padding: 10px; display: flex; flex-direction: column; flex-grow: 1; }
 
         .card-title {
-            font-size: 0.85rem; font-weight: 600; line-height: 1.3;
-            margin-bottom: 4px; color: #333;
+            font-size: 0.85rem; font-weight: 700; color: var(--text);
+            margin-bottom: 6px; line-height: 1.3;
             display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
             height: 2.6em;
         }
 
-        .rating-box {
-            margin: 4px 0 8px 0;
-            color: var(--star-yellow);
-            font-size: 0.75rem;
-            display: flex; align-items: center; gap: 2px;
+        /* Barra de Estoque */
+        .stock-wrapper { margin-bottom: 8px; }
+        .stock-bar {
+            height: 4px; background: #eee; border-radius: 2px; overflow: hidden; position: relative;
         }
-        .rating-text { color: #999; font-size: 0.65rem; margin-left: 3px; }
+        .stock-fill {
+            height: 100%; background: #FF0040; width: 85%; border-radius: 2px;
+        }
+        .stock-text { font-size: 0.6rem; color: #FF0040; font-weight: 700; margin-top: 2px; display: block;}
 
-        .card-desc {
-            font-size: 0.7rem; color: #777; margin-bottom: 10px; line-height: 1.3;
-            flex-grow: 1;
-            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+        .btn-buy {
+            background: var(--dark); color: white;
+            padding: 8px; border-radius: 8px;
+            text-decoration: none; text-align: center;
+            font-weight: 700; font-size: 0.75rem;
+            display: flex; justify-content: center; align-items: center; gap: 6px;
+            margin-top: auto; transition: 0.2s;
         }
+        .btn-buy:active { transform: scale(0.95); }
 
-        .btn-cta {
-            background: var(--shopee-orange);
-            color: #fff; text-decoration: none;
-            text-align: center; padding: 10px;
-            border-radius: 6px; font-weight: 700;
-            text-transform: uppercase; font-size: 0.8rem;
-            display: flex; align-items: center; justify-content: center; gap: 6px;
-            box-shadow: 0 3px 0 #bd381e;
-            margin-top: auto;
+        /* --- MODAL --- */
+        .modal-backdrop {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            z-index: 9999; display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: 0.3s; padding: 20px;
         }
-        
-        .btn-cta:active { transform: translateY(3px); box-shadow: none; }
+        .modal-backdrop.active { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            background: white; width: 100%; max-width: 320px;
+            border-radius: 20px; padding: 25px; text-align: center;
+            transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        .modal-backdrop.active .modal-content { transform: scale(1); }
+
+        .modal-badge {
+            background: var(--accent); color: var(--dark);
+            padding: 5px 15px; border-radius: 20px; font-weight: 800; font-size: 0.7rem;
+            display: inline-block; margin-bottom: 15px;
+        }
+        .modal-img { width: 120px; margin-bottom: 10px; }
 
         /* --- FOOTER --- */
         footer {
-            text-align: center; margin-top: 40px; padding: 20px;
-            background: #fff; border-top: 1px solid #eee;
-            color: #888; font-size: 0.75rem;
-        }
-        .trust-badges { display: flex; justify-content: center; gap: 15px; margin-bottom: 10px; font-size: 1.1rem; color: var(--text-dark); }
-
-        /* --- MODAL --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 2000;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; visibility: hidden; transition: 0.3s;
-            backdrop-filter: blur(3px);
-            padding: 20px;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-
-        .modal-box {
-            background: #fff; width: 100%; max-width: 350px;
-            border-radius: 12px; padding: 25px 20px; text-align: center;
-            position: relative; transform: scale(0.8); transition: 0.3s ease-out;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-        .modal-overlay.active .modal-box { transform: scale(1); }
-
-        .modal-close {
-            position: absolute; top: 10px; right: 10px;
-            background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #aaa; padding: 5px;
+            text-align: center; margin-top: 40px; color: #999; font-size: 0.7rem;
         }
 
-        .flash-tag {
-            background: #ffe100; display: inline-block; padding: 4px 12px;
-            font-weight: 800; font-size: 0.7rem; border-radius: 20px;
-            margin-bottom: 15px; letter-spacing: 0.5px;
+        /* Animações */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .modal-img { width: 120px; margin-bottom: 15px; }
-        .modal-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); line-height: 1.3; }
-        .modal-text { font-size: 0.85rem; color: #666; margin-bottom: 20px; }
-
-        /* --- MEDIA QUERIES (O SEGREDO DA RESPONSIVIDADE) --- */
+        
+        /* Ajustes Específicos Mobile */
         @media (max-width: 768px) {
-            header .logo-shopee { height: 55px; }
-            header p.subtitle { font-size: 0.75rem; }
-            
-            /* Navegação estilo Stories */
-            .category-nav {
-                justify-content: flex-start;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                padding-bottom: 10px;
-                -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
-            }
-            .category-nav::-webkit-scrollbar { display: none; } /* Esconde barra de rolagem */
-            
-            /* Grid Mobile (2 Colunas Estilo App) */
             #product-grid {
                 grid-template-columns: repeat(2, 1fr); /* Força 2 colunas */
                 gap: 10px;
             }
-
-            .product-card { border-radius: 6px; }
-            .card-content { padding: 8px; }
-            .card-title { font-size: 0.8rem; height: 2.4em; }
-            .card-desc { display: none; } /* Esconde descrição no mobile para limpar o visual */
-            .btn-cta { padding: 8px; font-size: 0.7rem; }
-            
-            .section-title { font-size: 1.2rem; margin: 20px 0 15px; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            .container { padding: 0 10px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="modal-offer" class="modal-overlay">
-        <div class="modal-box">
-            <button class="modal-close" id="close-modal">&times;</button>
-            <span class="flash-tag">⚡ OFERTA RELÂMPAGO</span>
-            <br>
-            <img src="img/prod1.png" alt="Oferta Destaque" class="modal-img">
-            <h3 class="modal-title">O Queridinho do TikTok!</h3>
-            <p class="modal-text">Estoque no Brasil com envio imediato. Aproveite antes que acabe.</p>
-            <a href="https://s.shopee.com.br/2g3QkjiOrX" target="_blank" class="btn-cta" style="border-radius: 30px;">
-                Ver Preço Secreto <i class="fas fa-lock"></i>
-            </a>
+    <div class="top-ticker">
+        <div class="ticker-content">
+            🔥 FRETE GRÁTIS PARA TODO BRASIL • ENVIO IMEDIATO • ESTOQUE NO BRASIL • 
+            🔥 FRETE GRÁTIS PARA TODO BRASIL • ENVIO IMEDIATO • ESTOQUE NO BRASIL •
         </div>
     </div>
 
     <header>
-        <div class="container">
-            <img src="img/logoshopee.png" alt="Achadinhos Shopee" class="logo-shopee">
-            <p class="subtitle">A Curadoria Oficial de quem ama economizar</p>
+        <div class="container header-inner">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                KONG <span>ACHADINHOS</span>
+            </div>
         </div>
     </header>
 
-    <div class="search-wrapper">
-        <div class="container">
-            <div class="search-box">
-                <input type="text" id="search-bar" placeholder="🔍 O que você procura?">
-                <i class="fas fa-search search-icon"></i>
+    <div class="container">
+        
+        <div class="hero">
+            <div class="hero-content">
+                <h2>OFERTAS RELÂMPAGO ⚡</h2>
+                <p>Preços secretos liberados por tempo limitado.</p>
+                <div class="countdown">
+                    <i class="fas fa-clock"></i> <span id="timer">05:43:21</span>
+                </div>
             </div>
-            
-            <nav class="category-nav">
-                <button class="filter-btn active" data-category="all">🔥 Tudo</button>
-                <button class="filter-btn" data-category="eletronicos">⚡ Tech</button>
-                <button class="filter-btn" data-category="casa">🏠 Casa</button>
-                <button class="filter-btn" data-category="beleza">✨ Beleza</button>
-                <button class="filter-btn" data-category="cozinha">🍳 Cozinha</button>
-            </nav>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="🔍 O que você quer caçar hoje?">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <div class="stories-nav">
+            <div class="story-item active" data-category="all">
+                <div class="story-circle"><i class="fas fa-fire"></i></div>
+                <span class="story-label">Tudo</span>
+            </div>
+            <div class="story-item" data-category="eletronicos">
+                <div class="story-circle"><i class="fas fa-mobile-alt"></i></div>
+                <span class="story-label">Tech</span>
+            </div>
+            <div class="story-item" data-category="casa">
+                <div class="story-circle"><i class="fas fa-home"></i></div>
+                <span class="story-label">Casa</span>
+            </div>
+            <div class="story-item" data-category="beleza">
+                <div class="story-circle"><i class="fas fa-star"></i></div>
+                <span class="story-label">Beleza</span>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">Achados do Dia</h2>
+            <span class="badge-hot">HOT</span>
+        </div>
+
+        <div id="product-grid"></div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 Kong Achadinhos<br>Ofertas Virais</p>
+    </footer>
+
+    <div id="modal" class="modal-backdrop">
+        <div class="modal-content">
+            <button onclick="closeModal()" style="position:absolute; right:15px; top:15px; border:none; background:none; font-size:1.2rem; color:#999;"><i class="fas fa-times"></i></button>
+            <span class="modal-badge">🔥 DICA DO CHEFE</span>
+            <br>
+            <img src="img/prod1.png" class="modal-img" alt="Produto">
+            <h3 style="font-size:1.1rem; margin-bottom:5px;">Achadinho Desbloqueado!</h3>
+            <p style="font-size:0.85rem; color:#666; margin-bottom:20px;">Esse produto está viralizando agora.</p>
+            <a href="https://s.shopee.com.br/2g3QkjiOrX" target="_blank" class="btn-buy" style="background: var(--primary); font-size: 1rem; padding: 12px;">
+                VER DESCONTO <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 
-    <main class="container">
-        <h2 class="section-title">💎 Seleção VIP: <br><span>Estoque Limitado</span></h2>
-        <div id="product-grid"></div>
-    </main>
-
-    <footer>
-        <div class="trust-badges">
-            <i class="fas fa-shield-alt"></i>
-            <i class="fas fa-truck"></i>
-            <i class="fas fa-star"></i>
-        </div>
-        <p>© 2025 Scheapee - Curadoria de Ofertas.</p>
-    </footer>
-
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        const products = [
-            {   
-                name: "10 - Drone E88 Pro HD | O Viral da Internet",
-                category: "eletronicos",
-                image: "img/prod1.png", 
-                price: 69.30,
-                fakeOriginal: 119.48,
-                link: "https://s.shopee.com.br/2g3QkjiOrX", 
-                desc: "Filmagens cinematográficas e fácil de pilotar.",
-                tag: "🔥 TOP 1"
-            },
-            {   
-                name: "09 - Lixeira Inteligente Sensor Automática",
-                category: "casa",
-                image: "img/prod2.png", 
-                price: 72.99,
-                fakeOriginal: 119.66,
-                link: "https://s.shopee.com.br/2qMqx2hlWY", 
-                desc: "Higiene de luxo. Abre sozinha.",
-                tag: "🏠 LUXO"
-            },
-            {   
-                name: "08 - Espelho Orgânico LED Touch",
-                category: "beleza",
-                image: "img/prod3.png", 
-                price: 139.90,
-                fakeOriginal: 499.39,
-                link: "https://s.shopee.com.br/5AkljKYsn2", 
-                desc: "Iluminação perfeita para make.",
-                tag: "✨ TREND"
-            },
-            {   
-                name: "07 - Soundbar Gamer RGB Profissional",
-                category: "eletronicos",
-                image: "img/prod4.png", 
-                price: 63.56,
-                fakeOriginal: 97.78,
-                link: "https://s.shopee.com.br/2B7A9mByz7", 
-                desc: "Graves potentes e visual incrível.",
-                tag: "🎧 AUDIO"
-            },
-            {   
-                name: "06 - Kit 2 Câmeras Espiãs Wifi",
-                category: "eletronicos",
-                image: "img/prod5.png", 
-                price: 56.14,
-                fakeOriginal: 199.00,
-                link: "https://s.shopee.com.br/20njxTCcK4", 
-                desc: "Monitore tudo pelo celular.",
-                tag: "🛡️ SEGURANÇA"
-            },
-            {   
-                name: "05 - Mop Spray Com Reservatório",
-                category: "casa",
-                image: "img/prod8.png", 
-                price: 32.99,
-                fakeOriginal: 89.90,
-                link: "https://s.shopee.com.br/9KaKgUMoRM",
-                desc: "Limpeza profunda sem molhar as mãos.",
-                tag: "🪣 PRÁTICO"
-            },
-            {   
-                name: "04 - Projetor Magcubic 4K Android",
-                category: "eletronicos",
-                image: "img/prod7.png", 
-                price: 178.99,
-                fakeOriginal: 500.00,
-                link: "https://s.shopee.com.br/1qUJlADFf1", 
-                desc: "Cinema de 130 polegadas em casa.",
-                tag: "🎬 CINEMA"
-            },
-            {   
-                name: "03 - Lavadora Alta Pressão Turbo",
-                category: "casa",
-                image: "img/prod6.png", 
-                price: 339.00,
-                fakeOriginal: 399.00,
-                link: "https://s.shopee.com.br/1gAtYrDszy", 
-                desc: "Arranca sujeira difícil sem esforço.",
-                tag: "💧 FORÇA"
-            },
-            {   
-                name: "02 - Ventilador De Teto Com LED",
-                category: "casa",
-                image: "img/prod9.png", 
-                price: 59.90,
-                fakeOriginal: 110.00,
-                link: "https://s.shopee.com.br/9fDB56LXlS",
-                desc: "Refresca e ilumina com controle.",
-                tag: "❄️ FRESH"
-            },
-            {   
-                name: "01 - Kit 2 Spray Limpa Estofados",
-                category: "casa",
-                image: "img/prod10.png", 
-                price: 28.90,
-                fakeOriginal: 58.32,
-                link: "https://s.shopee.com.br/1VrTMYEWKv", 
-                desc: "Espuma mágica que limpa a seco.",
-                tag: "🧼 LIMPEZA"
-            }
-        ];
+        // Timer Regressivo Fake
+        function startTimer(duration, display) {
+            var timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
 
-        const grid = document.getElementById('product-grid');
-        const searchInput = document.getElementById('search-bar');
-        const btns = document.querySelectorAll('.filter-btn');
-        let activeCategory = 'all';
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        function render(list) {
-            grid.innerHTML = '';
-            if(list.length === 0) {
-                grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: #999;">
-                    <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                    <p>Nenhum achadinho encontrado.</p>
-                </div>`;
-                return;
-            }
+                display.textContent = hours + ":" + minutes + ":" + seconds;
 
-            list.forEach((p, index) => {
-                const discount = Math.round(((p.fakeOriginal - p.price) / p.fakeOriginal) * 100);
-                const html = `
-                <div class="product-card" style="animation: fadeInUp 0.5s ease forwards; animation-delay: ${index * 0.05}ms; opacity: 0;">
-                    <span class="tag-trigger">${p.tag}</span>
-                    <span class="tag-discount">-${discount}%</span>
+                if (--timer < 0) { timer = duration; }
+            }, 1000);
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Iniciar Timer de 5 horas
+            startTimer(18000, document.querySelector('#timer'));
+
+            // LISTA DE PRODUTOS (Certifique-se que a pasta é 'img' minúsculo)
+            const products = [
+                {   name: "(10) Drone E88 Pro | Viral", category: "eletronicos", image: "img/prod1.png", link: "https://s.shopee.com.br/2g3QkjiOrX", tag: "TOP 1", stock: 8 },
+                {   name: "(09) Lixeira Inteligente", category: "casa", image: "img/prod2.png", link: "https://s.shopee.com.br/2qMqx2hlWY", tag: "LUXO", stock: 12 },
+                {   name: "(08) Espelho Orgânico LED", category: "beleza", image: "img/prod3.png", link: "https://s.shopee.com.br/5AkljKYsn2", tag: "VIRAL", stock: 5 },
+                {   name: "(07) Soundbar Gamer RGB", category: "eletronicos", image: "img/prod4.png", link: "https://s.shopee.com.br/2B7A9mByz7", tag: "AUDIO", stock: 15 },
+                {   name: "(06) Kit Câmeras Espiãs", category: "eletronicos", image: "img/prod5.png", link: "https://s.shopee.com.br/20njxTCcK4", tag: "WIFI", stock: 7 },
+                {   name: "(05) Mop Spray Limpeza", category: "casa", image: "img/prod8.png", link: "https://s.shopee.com.br/9KaKgUMoRM", tag: "PRÁTICO", stock: 20 },
+                {   name: "(04) Projetor Magcubic 4K", category: "eletronicos", image: "img/prod7.png", link: "https://s.shopee.com.br/1qUJlADFf1", tag: "CINEMA", stock: 3 },
+                {   name: "(03) Lavadora Alta Pressão", category: "casa", image: "img/prod6.png", link: "https://s.shopee.com.br/1gAtYrDszy", tag: "FORÇA", stock: 9 },
+                {   name: "(02) Ventilador LED Teto", category: "casa", image: "img/prod9.png", link: "https://s.shopee.com.br/9fDB56LXlS", tag: "FRESH", stock: 11 },
+                {   name: "(01) Spray Limpa Sofá", category: "casa", image: "img/prod10.png", link: "https://s.shopee.com.br/1VrTMYEWKv", tag: "MÁGICO", stock: 25 }
+            ];
+
+            const grid = document.getElementById('product-grid');
+            const searchInput = document.getElementById('search-bar');
+            const storyItems = document.querySelectorAll('.story-item');
+            let activeCategory = 'all';
+
+            function render(list) {
+                grid.innerHTML = '';
+                
+                if(list.length === 0) {
+                    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:#999;">Nenhum achado com esse nome... 🐵</div>`;
+                    return;
+                }
+
+                list.forEach((p, index) => {
+                    // Lógica da Barra de Estoque
+                    let stockWidth = 100 - (p.stock * 3); 
+                    if(stockWidth > 90) stockWidth = 90;
                     
-                    <div class="img-wrapper">
-                        <img src="${p.image}" alt="${p.name}" loading="lazy">
-                    </div>
-                    
-                    <div class="card-content">
-                        <h3 class="card-title">${p.name}</h3>
+                    const html = `
+                    <div class="product-card" style="animation: fadeInUp 0.5s ease forwards; animation-delay: ${index * 0.05}ms; opacity: 0;">
+                        <span class="card-tag">${p.tag}</span>
                         
-                        <div class="rating-box">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="rating-text">(5.0)</span>
+                        <div class="img-container">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy">
                         </div>
                         
-                        <p class="card-desc">${p.desc}</p>
-                        
-                        <a href="${p.link}" target="_blank" class="btn-cta">
-                            VER PREÇO 🔥
-                        </a>
-                    </div>
-                </div>
-                `;
-                grid.innerHTML += html;
-            });
-        }
+                        <div class="card-body">
+                            <h3 class="card-title">${p.name}</h3>
+                            
+                            <div class="stock-wrapper">
+                                <div class="stock-bar"><div class="stock-fill" style="width:${stockWidth}%"></div></div>
+                                <span class="stock-text">Restam ${p.stock} unidades</span>
+                            </div>
+                            
+                            <a href="${p.link}" target="_blank" class="btn-buy">
+                                VER PREÇO <i class="fas fa-lock"></i>
+                            </a>
+                        </div>
+                    </div>`;
+                    grid.innerHTML += html;
+                });
+            }
 
-        function filterData() {
-            const term = searchInput.value.toLowerCase();
-            const filtered = products.filter(p => {
-                const matchesCat = activeCategory === 'all' || p.category === activeCategory;
-                const matchesSearch = p.name.toLowerCase().includes(term) || p.desc.toLowerCase().includes(term);
-                return matchesCat && matchesSearch;
-            });
-            render(filtered);
-        }
+            function filterData() {
+                const term = searchInput.value.toLowerCase();
+                const filtered = products.filter(p => {
+                    const matchesCat = activeCategory === 'all' || p.category === activeCategory;
+                    const matchesSearch = p.name.toLowerCase().includes(term);
+                    return matchesCat && matchesSearch;
+                });
+                render(filtered);
+            }
 
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                btns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                activeCategory = btn.getAttribute('data-category');
-                filterData();
+            storyItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    storyItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    activeCategory = item.getAttribute('data-category');
+                    filterData();
+                });
             });
+
+            searchInput.addEventListener('input', filterData);
+            
+            // Abrir Modal após 3 segundos
+            setTimeout(() => { document.getElementById('modal').classList.add('active'); }, 3000);
+            
+            // Render Inicial
+            render(products);
         });
-
-        searchInput.addEventListener('input', filterData);
-
-        const modal = document.getElementById('modal-offer');
-        const closeBtn = document.getElementById('close-modal');
-
-        setTimeout(() => { modal.classList.add('active'); }, 3000); 
-
-        closeBtn.addEventListener('click', () => { modal.classList.remove('active'); });
-        modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-
-        render(products);
-    });
     </script>
 </body>
 </html>
